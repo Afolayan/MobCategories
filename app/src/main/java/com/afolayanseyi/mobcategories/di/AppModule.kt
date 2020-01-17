@@ -1,7 +1,7 @@
 package com.afolayanseyi.mobcategories.di
 
-import com.afolayanseyi.mobcategories.data.model.MobCategoriesRepository
-import com.afolayanseyi.mobcategories.data.model.MobCategoriesRepositoryImpl
+import com.afolayanseyi.mobcategories.data.MobCategoriesRepository
+import com.afolayanseyi.mobcategories.data.MobCategoriesRepositoryImpl
 import com.afolayanseyi.mobcategories.network.NetworkApi
 import com.afolayanseyi.mobcategories.utils.baseUrl
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
