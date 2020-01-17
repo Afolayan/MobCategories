@@ -1,4 +1,4 @@
-package com.afolayanseyi.mobcategories.model
+package com.afolayanseyi.mobcategories.data.model
 
 data class MobCategory(
     var id: String? = null,

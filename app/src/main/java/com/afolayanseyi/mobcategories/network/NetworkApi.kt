@@ -1,10 +1,11 @@
 package com.afolayanseyi.mobcategories.network
 
-import com.afolayanseyi.mobcategories.model.MobCategory
+import com.afolayanseyi.mobcategories.data.model.MobCategory
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 
 interface NetworkApi {
-    @GET
+
+    @GET("/")
     fun retrieveMobCategories(): Deferred<List<MobCategory>>
 }

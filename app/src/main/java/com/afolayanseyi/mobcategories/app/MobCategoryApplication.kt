@@ -2,6 +2,7 @@ package com.afolayanseyi.mobcategories.app
 
 import android.app.Application
 import com.afolayanseyi.mobcategories.di.appModule
+import com.afolayanseyi.mobcategories.di.repositoryModule
 import com.afolayanseyi.mobcategories.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,7 +16,7 @@ class MobCategoryApplication : Application() {
         startKoin {
             androidContext(this@MobCategoryApplication)
             androidLogger()
-            modules(listOf(appModule, viewModelModule))
+            modules(listOf(appModule, repositoryModule, viewModelModule))
         }
     }
 }

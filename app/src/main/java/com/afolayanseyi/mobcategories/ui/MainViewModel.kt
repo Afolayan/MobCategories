@@ -2,26 +2,23 @@ package com.afolayanseyi.mobcategories.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.afolayanseyi.mobcategories.model.MobCategory
-import com.afolayanseyi.mobcategories.network.NetworkApi
-import kotlinx.coroutines.*
+import androidx.lifecycle.viewModelScope
+import com.afolayanseyi.mobcategories.data.model.MobCategoriesRepository
+import com.afolayanseyi.mobcategories.data.model.MobCategory
+import com.afolayanseyi.mobcategories.data.model.Result
+import kotlinx.coroutines.launch
 
 class MainViewModel(
-    val networkApi: NetworkApi,
-    val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+    private val repository: MobCategoriesRepository
 ) : ViewModel() {
 
-    val mobCategoriesLiveData = MutableLiveData<List<MobCategory>>()
+    val mobCategoriesLiveData = MutableLiveData<Result<List<MobCategory>>>()
 
     fun getMobCategories() {
-        coroutineScope.launch {
-            val breeds = networkApi.retrieveMobCategories().await()
-            mobCategoriesLiveData.postValue(breeds)
+        mobCategoriesLiveData.postValue(Result.Loading)
+        viewModelScope.launch {
+            val categories = repository.getMobCategoriesAsync().await()
+            mobCategoriesLiveData.postValue(Result.Success(categories))
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        coroutineScope.coroutineContext.cancel()
     }
 }

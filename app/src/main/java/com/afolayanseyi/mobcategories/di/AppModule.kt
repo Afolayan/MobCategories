@@ -1,5 +1,7 @@
 package com.afolayanseyi.mobcategories.di
 
+import com.afolayanseyi.mobcategories.data.model.MobCategoriesRepository
+import com.afolayanseyi.mobcategories.data.model.MobCategoriesRepositoryImpl
 import com.afolayanseyi.mobcategories.network.NetworkApi
 import com.afolayanseyi.mobcategories.utils.baseUrl
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -12,6 +14,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 val appModule = module {
     single { createRetrofit(createOkHttpClient()) }
     single { createNetworkApi(get()) }
+}
+
+val repositoryModule = module {
+    single {
+        MobCategoriesRepositoryImpl(get()) as MobCategoriesRepository
+    }
 }
 
 fun createOkHttpClient(): OkHttpClient {
