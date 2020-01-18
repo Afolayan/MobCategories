@@ -15,7 +15,11 @@ data class Product(
     var description: String? = null,
     var salePrice: SalePrice? = null
 
-)
+) {
+    fun getPrice() = salePrice?.run {
+        currency.plus(amount)
+    }
+}
 
 data class SalePrice(
     var amount: String? = null,

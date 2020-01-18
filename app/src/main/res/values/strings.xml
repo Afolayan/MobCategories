@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MobCategories</string>
+    <string name="product_image_text">Product Image</string>
 </resources>

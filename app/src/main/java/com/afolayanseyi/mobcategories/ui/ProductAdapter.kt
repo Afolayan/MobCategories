@@ -3,18 +3,18 @@ package com.afolayanseyi.mobcategories.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.afolayanseyi.mobcategories.R
 import com.afolayanseyi.mobcategories.data.model.Product
+import com.afolayanseyi.mobcategories.databinding.LayoutSingleProductItemBinding
 
 
-class ProductAdapter(private val productsList: List<Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private val productsList: List<Product>) :
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_category_item, parent, false)
-        return ViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val itemBinding = LayoutSingleProductItemBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(itemBinding)
     }
 
     override fun getItemCount(): Int {
@@ -22,15 +22,25 @@ class ProductAdapter(private val productsList: List<Product>) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(productsList[position])
+        val product = productsList[position]
+        holder.apply {
+            bind(createOnClickListener(product), product)
+        }
+
     }
 
+    private fun createOnClickListener(product: Product): View.OnClickListener {
+        return View.OnClickListener {
+            //switch navigation here
+        }
+    }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var categoryName: TextView = itemView.findViewById(R.id.name)
+    class ViewHolder(private val itemBinding: LayoutSingleProductItemBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(product: Product) {
-            categoryName.text = product.name
+        fun bind(listener: View.OnClickListener, product: Product) {
+            itemBinding.clickListener = listener
+            itemBinding.product = product
         }
     }
 }

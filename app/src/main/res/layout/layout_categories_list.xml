@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/category_item_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/products_recycler_view"
+    <data>
+        <variable
+            name="category"
+            type="com.afolayanseyi.mobcategories.data.model.MobCategory" />
+    </data>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="7dp" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/categoryItemTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{category.name}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/productsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
+            tools:listitem="@layout/layout_categories_list"
+            />
+    </LinearLayout>
+</layout>

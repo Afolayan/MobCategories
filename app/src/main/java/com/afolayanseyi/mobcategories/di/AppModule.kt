@@ -3,6 +3,7 @@ package com.afolayanseyi.mobcategories.di
 import com.afolayanseyi.mobcategories.data.MobCategoriesRepository
 import com.afolayanseyi.mobcategories.data.MobCategoriesRepositoryImpl
 import com.afolayanseyi.mobcategories.network.NetworkApi
+import com.afolayanseyi.mobcategories.utils.GlideImageLoader
 import com.afolayanseyi.mobcategories.utils.baseUrl
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -19,6 +20,12 @@ val appModule = module {
 val repositoryModule = module {
     single {
         MobCategoriesRepositoryImpl(get()) as MobCategoriesRepository
+    }
+}
+
+val imageLoader = module {
+    single {
+        GlideImageLoader()
     }
 }
 

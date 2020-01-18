@@ -1,13 +1,11 @@
 package com.afolayanseyi.mobcategories.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.afolayanseyi.mobcategories.R
 import com.afolayanseyi.mobcategories.data.model.MobCategory
+import com.afolayanseyi.mobcategories.databinding.LayoutCategoriesListBinding
 
 
 class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
@@ -19,9 +17,10 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
         parent: ViewGroup,
         viewType: Int
     ): CategoryViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_categories_list, parent, false)
-        return CategoryViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val itemBinding = LayoutCategoriesListBinding.inflate(layoutInflater, parent, false)
+
+        return CategoryViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(
@@ -31,19 +30,18 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
         holder.bind(categoriesList[position])
     }
 
-    class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val sectionName: TextView =
-            itemView.findViewById(R.id.category_item_text_view)
-        private val itemRecyclerView: RecyclerView =
-            itemView.findViewById(R.id.products_recycler_view)
+    class CategoryViewHolder(private val itemBinding: LayoutCategoriesListBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(mobCategory: MobCategory) {
-            sectionName.text = mobCategory.name
+            itemBinding.category = mobCategory
+
             val linearLayoutManager =
-                LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
-            itemRecyclerView.layoutManager = linearLayoutManager
+                LinearLayoutManager(itemBinding.root.context,
+                    LinearLayoutManager.VERTICAL, false)
+            itemBinding.productsRecyclerView.layoutManager = linearLayoutManager
             val productAdapter = ProductAdapter(mobCategory.products)
-            itemRecyclerView.adapter = productAdapter
+            itemBinding.productsRecyclerView.adapter = productAdapter
         }
 
     }

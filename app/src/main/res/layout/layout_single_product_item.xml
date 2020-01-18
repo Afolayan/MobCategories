@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="product"
+            type="com.afolayanseyi.mobcategories.data.model.Product" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/productItemCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{clickListener}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/productImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="344dp"
+                android:contentDescription="@string/product_image_text"
+                android:padding="@dimen/padding_normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:productImage="@{product.url}"
+                tools:src="@drawable/ic_empty_product" />
+
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@{product.name}"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.13"
+                app:layout_constraintStart_toEndOf="@id/productImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Beer" />
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_very_small"
+                app:price="@{product.salePrice}"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.13"
+                app:layout_constraintStart_toEndOf="@id/productImageView"
+                app:layout_constraintTop_toBottomOf="@id/productName"
+                tools:text="EUR 30" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>
