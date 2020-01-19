@@ -10,7 +10,7 @@ class GlideImageLoader : ImageLoader {
 
     override fun loadImage(imageView: ImageView, url: String) {
 
-        val imageUrl = baseUrl.plus(url)
+        val imageUrl = BASE_API_URL.plus(url)
         Glide.with(imageView)
             .load(imageUrl)
             .apply(RequestOptions().apply {

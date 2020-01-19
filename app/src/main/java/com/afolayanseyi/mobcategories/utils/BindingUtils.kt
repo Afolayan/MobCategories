@@ -12,5 +12,5 @@ fun loadImage(imageView: ImageView, url: String) {
 
 @BindingAdapter("price")
 fun loadPrice(priceTextView: TextView, salePrice: SalePrice) =  salePrice.run {
-    priceTextView.text = currency.plus(amount)
+    priceTextView.text = joinCurrencyAndAmount()
 }

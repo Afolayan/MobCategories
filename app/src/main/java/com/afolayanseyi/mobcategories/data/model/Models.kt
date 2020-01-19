@@ -25,4 +25,7 @@ data class Product(
 data class SalePrice(
     var amount: String? = null,
     var currency: String? = null
-): Parcelable
+): Parcelable {
+    fun joinCurrencyAndAmount() =
+        currency.plus(amount)
+}

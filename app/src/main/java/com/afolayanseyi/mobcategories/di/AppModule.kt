@@ -5,7 +5,7 @@ import com.afolayanseyi.mobcategories.data.MobCategoriesRepositoryImpl
 import com.afolayanseyi.mobcategories.network.NetworkApi
 import com.afolayanseyi.mobcategories.utils.GlideImageLoader
 import com.afolayanseyi.mobcategories.utils.ImageLoader
-import com.afolayanseyi.mobcategories.utils.baseUrl
+import com.afolayanseyi.mobcategories.utils.BASE_API_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -41,7 +41,7 @@ fun createRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl(baseUrl)
+        .baseUrl(BASE_API_URL)
         .client(okHttpClient)
         .build()
 }
