@@ -43,9 +43,10 @@
                 android:id="@+id/productName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_very_small"
+                android:fontFamily="@font/amaranth"
                 android:text="@{product.name}"
-                android:textSize="16sp"
+                android:textSize="@dimen/large_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.13"
                 app:layout_constraintStart_toEndOf="@id/productImageView"
@@ -57,12 +58,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_very_small"
-                app:price="@{product.salePrice}"
-                android:textSize="12sp"
+                android:fontFamily="@font/amaranth"
+                android:textSize="@dimen/normal_text_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.13"
                 app:layout_constraintStart_toEndOf="@id/productImageView"
                 app:layout_constraintTop_toBottomOf="@id/productName"
+                app:price="@{product.salePrice}"
                 tools:text="EUR 30" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="product"
             type="com.afolayanseyi.mobcategories.data.model.Product" />
@@ -62,14 +63,14 @@
                 android:id="@+id/productNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
                 android:layout_marginTop="@dimen/margin_normal"
+                android:fontFamily="@font/amaranth"
                 android:gravity="center"
                 android:text="@{product.name}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="@dimen/large_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/productImageCardView"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="Bread" />
@@ -80,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginBottom="@dimen/margin_normal"
+                android:fontFamily="@font/amaranth"
                 android:gravity="end"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="@dimen/medium_text_size"
