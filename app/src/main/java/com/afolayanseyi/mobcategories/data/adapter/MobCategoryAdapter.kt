@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.afolayanseyi.mobcategories.data.ProductClickListener
 import com.afolayanseyi.mobcategories.data.model.MobCategory
 import com.afolayanseyi.mobcategories.databinding.LayoutCategoriesListBinding
 
 
-class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
+class MobCategoryAdapter(private val categoriesList: List<MobCategory>,
+                         private val productClickListener: ProductClickListener) :
     RecyclerView.Adapter<MobCategoryAdapter.CategoryViewHolder>() {
 
     override fun getItemCount(): Int = categoriesList.size
@@ -30,10 +32,12 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
         position: Int
     ) {
         holder.bind(categoriesList[position])
+        holder.productClickListener = productClickListener
     }
 
     class CategoryViewHolder(private val itemBinding: LayoutCategoriesListBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
+        lateinit var  productClickListener: ProductClickListener
 
         fun bind(mobCategory: MobCategory) {
             itemBinding.category = mobCategory
@@ -45,7 +49,10 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
             val productAdapter =
                 ProductAdapter(
                     mobCategory.products
-                )
+                ) { product ->
+                    android.util.Log.e("CategoryViewHolder", "ProductAdapter")
+                    productClickListener.onProductClick(product)
+                }
             itemBinding.productsRecyclerView.adapter = productAdapter
         }
 

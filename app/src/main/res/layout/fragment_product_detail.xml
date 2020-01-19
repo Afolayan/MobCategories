@@ -38,6 +38,7 @@
                     android:id="@+id/productImageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="@dimen/margin_small"
                     android:contentDescription="@string/product_image_text"
                     app:productImage="@{product.url}"
                     tools:srcCompat="@drawable/ic_empty_product" />

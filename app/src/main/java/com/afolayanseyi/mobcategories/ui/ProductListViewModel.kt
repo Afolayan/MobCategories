@@ -13,12 +13,21 @@ class ProductListViewModel(
 ) : ViewModel() {
 
     val mobCategoriesLiveData = MutableLiveData<Result<List<MobCategory>>>()
+    init {
+        getMobCategories()
+    }
+
 
     fun getMobCategories() {
         mobCategoriesLiveData.postValue(Result.Loading)
         viewModelScope.launch {
-            val categories = repository.getMobCategoriesAsync().await()
-            mobCategoriesLiveData.postValue(Result.Success(categories))
+            try {
+                val categories = repository.getMobCategoriesAsync().await()
+                mobCategoriesLiveData.postValue(Result.Success(categories))
+            }  catch (exception: Exception) {
+                mobCategoriesLiveData.postValue(Result.Error(exception))
+            }
+
         }
     }
 }

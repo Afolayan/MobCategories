@@ -8,7 +8,7 @@ import com.afolayanseyi.mobcategories.data.model.Product
 import com.afolayanseyi.mobcategories.databinding.LayoutSingleProductItemBinding
 
 
-class ProductAdapter(private val productsList: List<Product>) :
+class ProductAdapter(private val productsList: List<Product>, private val onItemClick: ((Product) -> Unit)) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +33,8 @@ class ProductAdapter(private val productsList: List<Product>) :
 
     private fun createOnClickListener(product: Product): View.OnClickListener {
         return View.OnClickListener {
-            //switch navigation here
+            android.util.Log.e("Adapter", "inside onclicklisterner")
+            onItemClick.invoke(product)
         }
     }
 

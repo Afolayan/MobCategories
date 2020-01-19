@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MobCategories</string>
     <string name="product_image_text">Product Image</string>
+    <string name="product_detail_text">Product Detail</string>
+    <string name="error_message">Error fetching category list</string>
+    <string name="retry_text">Retry</string>
 </resources>

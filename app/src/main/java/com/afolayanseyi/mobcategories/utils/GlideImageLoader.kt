@@ -3,6 +3,8 @@ package com.afolayanseyi.mobcategories.utils
 import android.widget.ImageView
 import com.afolayanseyi.mobcategories.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 
 class GlideImageLoader : ImageLoader {
 
@@ -11,6 +13,9 @@ class GlideImageLoader : ImageLoader {
         val imageUrl = baseUrl.plus(url)
         Glide.with(imageView)
             .load(imageUrl)
+            .apply(RequestOptions().apply {
+                diskCacheStrategy(DiskCacheStrategy.ALL)
+            })
             .error(R.drawable.ic_empty_product)
             .placeholder(R.drawable.ic_empty_product)
             .into(imageView)
