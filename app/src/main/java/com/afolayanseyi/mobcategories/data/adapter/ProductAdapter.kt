@@ -1,4 +1,4 @@
-package com.afolayanseyi.mobcategories.ui
+package com.afolayanseyi.mobcategories.data.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,9 @@ class ProductAdapter(private val productsList: List<Product>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding = LayoutSingleProductItemBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(itemBinding)
+        return ViewHolder(
+            itemBinding
+        )
     }
 
     override fun getItemCount(): Int {

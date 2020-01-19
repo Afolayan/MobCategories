@@ -1,54 +1,31 @@
 package com.afolayanseyi.mobcategories.ui.main
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.afolayanseyi.mobcategories.R
-import com.afolayanseyi.mobcategories.data.model.Result
-import com.afolayanseyi.mobcategories.databinding.ActivityMainBinding
-import com.afolayanseyi.mobcategories.ui.MainViewModel
-import com.afolayanseyi.mobcategories.ui.MobCategoryAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private val mainViewModel: MainViewModel by viewModel()
-    private lateinit var activityBinding: ActivityMainBinding
+
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
-        activityBinding.viewModel = mainViewModel
+        navController = Navigation.findNavController(this, R.id.navHostFragment)
 
-        if (savedInstanceState == null) mainViewModel.getMobCategories()
-        mainViewModel.mobCategoriesLiveData.observe(this, Observer { result ->
-            when(result) {
-                is Result.Loading -> {
-                    showProgress()
-                }
-                is Result.Success -> {
-                    hideProgress()
-                    activityBinding.recycler.apply {
-                        val categoriesList = result.data
-                        adapter = MobCategoryAdapter(categoriesList)
-                        layoutManager = LinearLayoutManager(this@MainActivity)
-                    }
-                }
-                is Result.Error -> {
-                    hideProgress()
-                }
-            }
+        NavigationUI.setupActionBarWithNavController(this, navController, null)
 
-        })
+        appBarConfiguration = AppBarConfiguration.Builder(navController.graph).build()
+
     }
 
-    private fun hideProgress() {
-        activityBinding.progressBar.visibility = View.GONE
-    }
-
-    private fun showProgress() {
-        activityBinding.progressBar.visibility = View.VISIBLE
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 }

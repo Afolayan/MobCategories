@@ -8,7 +8,7 @@ import com.afolayanseyi.mobcategories.data.model.MobCategory
 import com.afolayanseyi.mobcategories.data.model.Result
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class ProductListViewModel(
     private val repository: MobCategoriesRepository
 ) : ViewModel() {
 

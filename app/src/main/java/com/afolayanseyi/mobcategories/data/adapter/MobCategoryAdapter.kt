@@ -1,4 +1,4 @@
-package com.afolayanseyi.mobcategories.ui
+package com.afolayanseyi.mobcategories.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,7 +20,9 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding = LayoutCategoriesListBinding.inflate(layoutInflater, parent, false)
 
-        return CategoryViewHolder(itemBinding)
+        return CategoryViewHolder(
+            itemBinding
+        )
     }
 
     override fun onBindViewHolder(
@@ -40,7 +42,10 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>) :
                 LinearLayoutManager(itemBinding.root.context,
                     LinearLayoutManager.VERTICAL, false)
             itemBinding.productsRecyclerView.layoutManager = linearLayoutManager
-            val productAdapter = ProductAdapter(mobCategory.products)
+            val productAdapter =
+                ProductAdapter(
+                    mobCategory.products
+                )
             itemBinding.productsRecyclerView.adapter = productAdapter
         }
 
