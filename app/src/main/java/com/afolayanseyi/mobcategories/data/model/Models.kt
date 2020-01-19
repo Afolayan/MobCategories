@@ -1,5 +1,8 @@
 package com.afolayanseyi.mobcategories.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 data class MobCategory(
     var id: String? = null,
     var name: String? = null,
@@ -7,6 +10,7 @@ data class MobCategory(
     var products: List<Product> = listOf()
 )
 
+@Parcelize
 data class Product(
     var id: String? = null,
     var categoryId: String? = null,
@@ -15,13 +19,10 @@ data class Product(
     var description: String? = null,
     var salePrice: SalePrice? = null
 
-) {
-    fun getPrice() = salePrice?.run {
-        currency.plus(amount)
-    }
-}
+): Parcelable
 
+@Parcelize
 data class SalePrice(
     var amount: String? = null,
     var currency: String? = null
-)
+): Parcelable

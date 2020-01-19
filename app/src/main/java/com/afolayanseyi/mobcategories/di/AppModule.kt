@@ -4,6 +4,7 @@ import com.afolayanseyi.mobcategories.data.MobCategoriesRepository
 import com.afolayanseyi.mobcategories.data.MobCategoriesRepositoryImpl
 import com.afolayanseyi.mobcategories.network.NetworkApi
 import com.afolayanseyi.mobcategories.utils.GlideImageLoader
+import com.afolayanseyi.mobcategories.utils.ImageLoader
 import com.afolayanseyi.mobcategories.utils.baseUrl
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -25,7 +26,7 @@ val repositoryModule = module {
 
 val imageLoader = module {
     single {
-        GlideImageLoader()
+        GlideImageLoader() as ImageLoader
     }
 }
 
