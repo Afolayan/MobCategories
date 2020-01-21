@@ -50,7 +50,6 @@ class MobCategoryAdapter(private val categoriesList: List<MobCategory>,
                 ProductAdapter(
                     mobCategory.products
                 ) { product ->
-                    android.util.Log.e("CategoryViewHolder", "ProductAdapter")
                     productClickListener.onProductClick(product)
                 }
             itemBinding.productsRecyclerView.adapter = productAdapter

@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.afolayanseyi.mobcategories.ui.main.ProductListFragment
+import org.hamcrest.CoreMatchers.not
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -23,5 +24,15 @@ class ProductListFragmentTest {
     fun testProductListFragmentHasProgressBar() {
         launchFragmentInContainer<ProductListFragment>()
         onView(withId(R.id.progressBar)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testHasProgressBar_canDismissAfterListIsLoaded() {
+        launchFragmentInContainer<ProductListFragment>()
+        onView(withId(R.id.progressBar)).check(matches(isDisplayed()))
+
+        Thread.sleep(5000)
+
+        onView(withId(R.id.progressBar)).check(matches(not(isDisplayed())))
     }
 }

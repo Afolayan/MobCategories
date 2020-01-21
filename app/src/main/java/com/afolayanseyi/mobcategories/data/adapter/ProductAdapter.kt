@@ -33,7 +33,6 @@ class ProductAdapter(private val productsList: List<Product>, private val onItem
 
     private fun createOnClickListener(product: Product): View.OnClickListener {
         return View.OnClickListener {
-            android.util.Log.e("Adapter", "inside onclicklisterner")
             onItemClick.invoke(product)
         }
     }

@@ -88,7 +88,6 @@ class ProductListFragment : Fragment(), ProductClickListener {
     }
 
     override fun onProductClick(product: Product) {
-        android.util.Log.e("CategoryViewHolder", "ProductAdapter ${product.name}")
 
         val bundle = Bundle().apply {
             putParcelable(PRODUCT_ARGS_EXTRA, product)

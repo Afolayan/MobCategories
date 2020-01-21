@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface NetworkApi {
 
     @GET("/")
-    fun retrieveMobCategories(): Deferred<List<MobCategory>>
+    fun fetchMobCategories(): Deferred<List<MobCategory>>
 }

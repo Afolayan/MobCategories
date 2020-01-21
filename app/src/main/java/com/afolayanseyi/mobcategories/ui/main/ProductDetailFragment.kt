@@ -13,7 +13,7 @@ import com.afolayanseyi.mobcategories.utils.PRODUCT_ARGS_EXTRA
 
 
 class ProductDetailFragment : Fragment() {
-    lateinit var fragmentProductDetailBinding: FragmentProductDetailBinding
+    private lateinit var fragmentProductDetailBinding: FragmentProductDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +33,6 @@ class ProductDetailFragment : Fragment() {
         arguments?.let {
             val product = it.getParcelable<Product>(PRODUCT_ARGS_EXTRA)!!
             fragmentProductDetailBinding.product = product
-            android.util.Log.e("product detail", "${product.name}")
         }
     }
 }

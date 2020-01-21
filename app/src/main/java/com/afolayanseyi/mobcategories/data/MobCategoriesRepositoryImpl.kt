@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 class MobCategoriesRepositoryImpl(private val networkApi: NetworkApi) :
     MobCategoriesRepository {
     override suspend fun getMobCategoriesAsync(): Deferred<List<MobCategory>> = withContext(Dispatchers.IO) {
-        networkApi.retrieveMobCategories()
+        networkApi.fetchMobCategories()
     }
 
 }
